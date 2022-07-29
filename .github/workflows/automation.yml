@@ -1,6 +1,7 @@
 name: Manual workflow
 
 on:
+  push
   schedule:
     - cron: "0 5,17 * * *"
   workflow_dispatch:
