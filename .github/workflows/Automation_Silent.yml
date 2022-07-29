@@ -35,16 +35,8 @@ jobs:
       with:
         node-version: 16
 
-    - name: Cache dependencies
-      id: cache
-      uses: actions/cache@v3
-      with:
-        path: ./node_modules
-        key: module-${{ hashFiles('package-lock.json') }}
-
     - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm install
+      run: npm ci
 
     - name: Bahamut Automation
       run: npx bahamut-automation -c config.yml
