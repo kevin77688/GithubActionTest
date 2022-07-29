@@ -35,11 +35,19 @@ jobs:
       uses: jannekem/run-python-script-action@v1
       env:
         USERNAME: ${{secrets.USERNAME}}
+        PASSWORD: ${{secrets.PASSWORD}}
+        LINE_TOKEN: ${{secrets.LINE_TOKEN}}
       with:
         script: |
           import os
-          print(os.environ['USERNAME'])
+          with open('config.yml', 'r'):
+            data = file.read()
+          data = data.replace("$username", os.environ['USERNAME'])
+          data = data.replace("$password", os.environ['PASSWORD'])
+          data = data.replace("$line_token", os.environ['LINE_TOKEN'])
+          with open('config.yml', 'w') as file:
+            file.write(data)
 
-    # - name: Bahamut Automation
-    #   run: npx bahamut-automation -c config.yml
+    - name: Bahamut Automation
+      run: npx bahamut-automation -c config.yml
       
