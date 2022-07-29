@@ -28,9 +28,8 @@ jobs:
     # - name: Install dependencies
     #   run: npm install
       
-    - name: Setup Config.yml
-      uses: actions/setup-python@v2
-      uses: jannekem/run-python-script-action@v1
+    - uses: actions/setup-python@v2
+    - uses: jannekem/run-python-script-action@v1
         with:
           script: |
             import os
