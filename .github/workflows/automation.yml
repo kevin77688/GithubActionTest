@@ -30,6 +30,6 @@ jobs:
       
     - name: Bahamut Automation
       run: npx bahamut-automation -c config.yml
-      with:
-        secrets: ${{ secrets.secrets }}
+      # with:
+      #   secrets: ${{ secrets.secrets }}
       
