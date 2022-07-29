@@ -1,0 +1,47 @@
+name: Automation Notify
+
+on:
+  push:
+  schedule:
+    - cron: "0 5, * * *"
+  workflow_dispatch:
+
+jobs:
+  automation:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v2
+    - name: Setup Config.yml 
+      uses: jannekem/run-python-script-action@v1
+      env:
+        USERNAME: ${{secrets.USERNAME}}
+        PASSWORD: ${{secrets.PASSWORD}}
+        LINE_TOKEN: ${{secrets.LINE_TOKEN}}
+      with:
+        script: |
+          import os
+          with open('config.yml', 'r') as file:
+            data = file.read()
+          data = data.replace("$username", os.environ['USERNAME'])
+          data = data.replace("$password", os.environ['PASSWORD'])
+          data = data.replace("$line_token", os.environ['LINE_TOKEN'])
+          with open('config.yml', 'w') as file:
+            file.write(data)
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+    - run: npm ci
+        
+    # - name: Install dependencies
+    #   run: npm install
+
+    - name: Bahamut Automation
+      run: npx bahamut-automation -c config.yml
+          
+    - name: Keep Alive
+      uses: gautamkrishnar/keepalive-workflow@master
