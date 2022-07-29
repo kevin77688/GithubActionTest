@@ -3,7 +3,7 @@ name: Automation Silent
 on:
   push:
   schedule:
-    - cron: "0 5, * * *"
+    - cron: "0 5,11,17 * * *"
   workflow_dispatch:
 
 jobs:
@@ -35,13 +35,12 @@ jobs:
       with:
         node-version: 16
 
-    - run: rm -rf ./node_modules
     - name: Cache dependencies
       id: cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ./node_modules
-        key: modules-${{ hashFiles('package-lock.json') }}
+        key: node_modules-${{ hashFiles('package-lock.json') }}
 
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
