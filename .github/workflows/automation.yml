@@ -17,6 +17,9 @@ jobs:
       
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.4.1
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
       
     - name: Cache dependencies
       uses: actions/cache@v2
