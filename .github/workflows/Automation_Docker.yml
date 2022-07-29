@@ -1,0 +1,39 @@
+name: Automation Silent
+
+on:
+  push:
+  schedule:
+    - cron: "0 19 * * *"
+  workflow_dispatch:
+
+jobs:
+  automation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v2
+    - name: Setup Config.yml 
+      uses: jannekem/run-python-script-action@v1
+      env:
+        USERNAME: ${{secrets.USERNAME}}
+        PASSWORD: ${{secrets.PASSWORD}}
+        LINE_TOKEN: ""
+      with:
+        script: |
+          import os
+          with open('config.yml', 'r') as file:
+            data = file.read()
+          data = data.replace("$username", os.environ['USERNAME'])
+          data = data.replace("$password", os.environ['PASSWORD'])
+          data = data.replace("$line_token", os.environ['LINE_TOKEN'])
+          with open('config.yml', 'w') as file:
+            file.write(data)
+
+    - uses: docker-practice/actions-setup-docker@master
+    - run: |
+        docker version
+        docker run --rm -v ""~/.config_NoNotify.yml":/config.yml" jacoblincool/bahamut-automation:v1.0.0-pre.7
+          
+    - name: Keep Alive
+      uses: gautamkrishnar/keepalive-workflow@master
