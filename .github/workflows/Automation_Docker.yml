@@ -33,7 +33,7 @@ jobs:
     - uses: docker-practice/actions-setup-docker@master
     - run: |
         docker version
-        docker run --rm -v ""./config.yml":/config.yml" jacoblincool/bahamut-automation:v1.0.0-pre.7
+        docker run --rm -v ""~/config.yml":/config.yml" jacoblincool/bahamut-automation:v1.0.0-pre.7
           
     - name: Keep Alive
       uses: gautamkrishnar/keepalive-workflow@master
