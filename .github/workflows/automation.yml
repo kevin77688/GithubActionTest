@@ -34,11 +34,11 @@ jobs:
     - name: Setup Config.yml 
       uses: jannekem/run-python-script-action@v1
       env:
-        SECRETS: ${{secrets.secrets}}
+        USERNAME: ${{secrets.USERNAME}}
       with:
         script: |
           import os
-          print(os.environ['SECRETS'])
+          print(os.environ['USERNAME'])
 
     # - name: Bahamut Automation
     #   run: npx bahamut-automation -c config.yml
