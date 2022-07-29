@@ -11,26 +11,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Keep Alive
-      uses: gautamkrishnar/keepalive-workflow@master
-      
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v3.4.1
-      
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.npm
-        key: npm-${{ hashFiles('package-lock.json') }}
-        restore-keys: npm-
-        
-    # - name: Install dependencies
-    #   run: npm install
-
+    - uses: actions/checkout@v3
     - uses: actions/setup-python@v2
-
     - name: Setup Config.yml 
       uses: jannekem/run-python-script-action@v1
       env:
@@ -47,7 +29,19 @@ jobs:
           data = data.replace("$line_token", os.environ['LINE_TOKEN'])
           with open('config.yml', 'w') as file:
             file.write(data)
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+    - run: npm ci
+        
+    # - name: Install dependencies
+    #   run: npm install
 
     - name: Bahamut Automation
       run: npx bahamut-automation -c config.yml
-      
+          
+    - name: Keep Alive
+      uses: gautamkrishnar/keepalive-workflow@master
