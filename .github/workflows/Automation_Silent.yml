@@ -18,7 +18,7 @@ jobs:
       env:
         USERNAME: ${{secrets.USERNAME}}
         PASSWORD: ${{secrets.PASSWORD}}
-        LINE_TOKEN: ${{secrets.LINE_TOKEN}}
+        LINE_TOKEN: ""
       with:
         script: |
           import os
