@@ -1,9 +1,9 @@
-name: Manual workflow
+name: Automation Notify
 
 on:
   push:
   schedule:
-    - cron: "0 5,17 * * *"
+    - cron: "0 3 * * *"
   workflow_dispatch:
 
 jobs:
