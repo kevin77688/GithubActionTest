@@ -1,4 +1,4 @@
-name: Automation Notify
+name: Automation Silent
 
 on:
   push:
