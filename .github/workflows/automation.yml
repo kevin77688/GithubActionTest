@@ -17,9 +17,6 @@ jobs:
       
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.4.1
-
-    - name: Setup Python
-      uses: actions/setup-python@v2
       
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -28,11 +25,19 @@ jobs:
         key: npm-${{ hashFiles('package-lock.json') }}
         restore-keys: npm-
         
-    - name: Install dependencies
-      run: npm install
+    # - name: Install dependencies
+    #   run: npm install
       
-    - name: Bahamut Automation
-      run: npx bahamut-automation -c config.yml
-      # with:
-      #   secrets: ${{ secrets.secrets }}
+    - name: Setup Config.yml
+      uses: actions/setup-python@v2
+      uses: jannekem/run-python-script-action@v1
+        with:
+          script: |
+            import os
+            print("Directory contents:")
+            for f in os.listdir():
+                print(f)
+
+    # - name: Bahamut Automation
+    #   run: npx bahamut-automation -c config.yml
       
