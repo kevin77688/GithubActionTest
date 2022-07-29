@@ -29,6 +29,7 @@ jobs:
       run: npm ci --ignore-scripts
       
     - name: Bahamut Automation
+      run: npx bahamut-automation -c config.yml
       with:
         secrets: ${{ secrets.secrets }}
-      run: echo "npx bahamut-automation -c config.yml"
+      
