@@ -30,12 +30,12 @@ jobs:
       
     - uses: actions/setup-python@v2
     - uses: jannekem/run-python-script-action@v1
-        with:
-          script: |
-            import os
-            print("Directory contents:")
-            for f in os.listdir():
-                print(f)
+      with:
+        script: |
+          import os
+          print("Directory contents:")
+          for f in os.listdir():
+              print(f)
 
     # - name: Bahamut Automation
     #   run: npx bahamut-automation -c config.yml
