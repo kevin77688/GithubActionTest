@@ -40,7 +40,7 @@ jobs:
       with:
         script: |
           import os
-          with open('config.yml', 'r'):
+          with open('config.yml', 'r') as file:
             data = file.read()
           data = data.replace("$username", os.environ['USERNAME'])
           data = data.replace("$password", os.environ['PASSWORD'])
