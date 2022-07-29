@@ -1,4 +1,4 @@
-name: Automation Silent
+name: Automation Docker
 
 on:
   push:
