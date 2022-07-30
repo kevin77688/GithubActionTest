@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "bahamut-automation": "^1.0.0-pre.13"
+    "bahamut-automation": "^1.0.0-pre.13",
+    "playwright": "^1.24.2"
   }
 }
