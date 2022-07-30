@@ -1,10 +1,13 @@
 ---
 # 所有模組皆可存取的共用參數
 shared:
+    shared_key: shared_val
 
 # 使用的模組及其參數，可以是內建的模組或是自製模組的路徑
+# 內建模組列表：https://gitlab.com/JacobLinCool/bahamut-automation/-/blob/main/src/modules/README.md
 modules:
     # 註冊一些通用函式到 shared
+    utils:
     report:
     ad_handler:
 
@@ -12,36 +15,37 @@ modules:
     login:
         username: $username
         password: $password
-        # twofa: $twofa
     sign:
     guild:
     answer:
     lottery:
-        max_attempts: 20 # 每個最多嘗試 20 次
-        max_parallel: 16 # 並行執行的最大數量
+        max_attempts: 20
     del_mail:
         match: [{ title: "【勇者福利社】成功獲得抽獎資格通知信" }]
     logout:
 
     # 以下是寄報告的部分
     # telegram:
-    #     channel: $telegram_id
+    #     channel: $telegram_channel_id
     # discord:
-    #     webhook: $discord_webhook
+    #     webhook: $discord_webhook_url
     line_notify:
         token: $line_token
-    # issue:
-    #     pat: $github_token
+    issue:
+
+    # 自製模組（範例）
+    # /path/to/module:
+    #     param1: value1
+    #     param2: value2
 
 # 瀏覽器的設定
 browser:
     type: firefox
     headless: false
     firefoxUserPrefs:
-        dom.webaudio.enabled: false
+        dom.webaudio.enabled: true
         media.volume_scale: 0
         media.default_volume: 0
-    # 如果要使用非內建的瀏覽器執行，請設定 executablePath
     # executablePath: /path/to/browser
 
     # 更多設定請查閱：https://playwright.dev/docs/api/class-browsertype#browser-type-launch
