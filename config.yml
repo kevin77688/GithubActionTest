@@ -35,8 +35,8 @@ modules:
 
 # 瀏覽器的設定
 browser:
-    type: webkit
-    headless: true
+    type: firefox
+    headless: false
     firefoxUserPrefs:
         dom.webaudio.enabled: false
         media.volume_scale: 0
