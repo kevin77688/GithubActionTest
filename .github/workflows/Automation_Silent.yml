@@ -3,7 +3,7 @@ name: Automation Silent
 on:
   # push:
   schedule:
-    - cron: "0 5,11,17 * * *"
+    - cron: "0 9, * * *"
   workflow_dispatch:
 
 jobs:

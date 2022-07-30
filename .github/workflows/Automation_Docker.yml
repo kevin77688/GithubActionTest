@@ -1,9 +1,9 @@
 name: Automation Docker
 
 on:
-  push:
+  # push:
   schedule:
-    - cron: "0 19 * * *"
+    - cron: "0 3,21 * * *"
   workflow_dispatch:
 
 jobs:
