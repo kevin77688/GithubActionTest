@@ -2,8 +2,8 @@ name: Automation Notify
 
 on:
   # push:
-  schedule:
-    - cron: "0 15 * * *"
+  # schedule:
+    # - cron: "0 15 * * *"  # UTC+8 23:00
   workflow_dispatch:
 
 jobs:
