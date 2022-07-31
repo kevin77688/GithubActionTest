@@ -27,6 +27,9 @@ jobs:
           data = data.replace("$username", os.environ['USERNAME'])
           data = data.replace("$password", os.environ['PASSWORD'])
           data = data.replace("$line_token", os.environ['LINE_TOKEN'])
+          data = data.replace("headless: false", "headless: true")
+
+          headless: false
           with open('config.yml', 'w') as file:
             file.write(data)
 
