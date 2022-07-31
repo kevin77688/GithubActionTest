@@ -12,8 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Chrome
-      uses: browser-actions/setup-chrome@latest
     - uses: actions/setup-python@v2
     - name: Setup Config.yml 
       uses: jannekem/run-python-script-action@v1
@@ -37,7 +35,7 @@ jobs:
       with:
         node-version: 16
         cache: 'npm'
-    - run: npm ci
+    - run: npm install
 
     - name: Bahamut Automation
       run: npx bahamut-automation -c config.yml
