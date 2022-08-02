@@ -1,7 +1,7 @@
 name: Automation Silent
 
 on:
-  push:
+  # push:
   schedule:
     - cron: "0 17 * * *"  # UTC+8 01:00  UTC+0 17:00
   workflow_dispatch:

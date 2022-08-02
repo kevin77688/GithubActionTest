@@ -1,7 +1,7 @@
 name: Automation Docker
 
 on:
-  # push:
+  push:
   schedule:
     - cron: "0 9 * * *" # UTC+8 17:00  UTC+0 09:00
   workflow_dispatch:
@@ -18,9 +18,9 @@ jobs:
     needs: setup_config
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Cache config files
-      uses: actions/cache@v3
+      - uses: actions/checkout@v3
+      - name: Cache config files
+        uses: actions/cache@v3
         with:
           path: config.yml
           key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
