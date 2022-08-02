@@ -22,7 +22,7 @@ jobs:
         id: config-cache
         uses: actions/cache@v3
         with:
-          path: ~/config.yml
+          path: config.yml
           key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_a_1
       - run: cat config.yml
 
