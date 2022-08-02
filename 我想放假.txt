@@ -1,0 +1,7 @@
+while 放假 == false :
+  summon 颱風
+  if (颱風.type == 中颱) or (颱風.type == 強颱) :
+    locations[] = 颱風.影響縣市()
+    for location in locations :
+      if location == 基隆 :
+        放假 = true
