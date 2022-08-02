@@ -31,8 +31,8 @@ jobs:
       # - name: Setup Node.js
       #   uses: actions/setup-node@v2
 
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
 
       - name: Bahamut Automation
         run: |
