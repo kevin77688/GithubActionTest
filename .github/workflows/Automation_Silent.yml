@@ -17,6 +17,8 @@ jobs:
   automation:
     needs: setup_config
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.24.0-focal
     steps:
       - uses: actions/checkout@v3
       - name: Cache config files
@@ -25,12 +27,6 @@ jobs:
         with:
           path: config.yml
           key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-
-      - name: Setup playwright
-        uses: microsoft/playwright-github-action@v1
 
       - name: Install dependencies
         run: |
