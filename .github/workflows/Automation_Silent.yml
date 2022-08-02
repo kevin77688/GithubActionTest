@@ -17,7 +17,7 @@ jobs:
   automation:
     needs: setup_config
     runs-on: ubuntu-latest
-    containers:
+    container:
       image: mcr.microsoft.com/playwright:v1.24.0-focal
     steps:
       - name: Cache config files
