@@ -30,8 +30,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get update > /dev/null
-          sudo apt-get -y install build-essential > /dev/null
+          apt-get update > /dev/null
+          apt-get -y install build-essential > /dev/null
           npm install
           npx playwright install
 
