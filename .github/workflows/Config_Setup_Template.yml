@@ -32,13 +32,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: config.yml
-          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.1
+          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
 
       - name: Setup config files
         if: steps.config-cache.outputs.cache-hit != 'true'
         run: |
-          sed -i 's|$username|\"${{secrets.USERNAME}}\"|g' config.yml
-          sed -i 's|$password|\"${{secrets.PASSWORD}}\"|g' config.yml
+          sed -i 's|$username|${{secrets.USERNAME}}|g' config.yml
+          sed -i 's|$password|"${{secrets.PASSWORD}}"|g' config.yml
           sed -i 's|$line_token|\"${{secrets.LINE_TOKEN}}\"|g' config.yml
           sed -i 's|$discord_webhook_url|\"${{secrets.DISCORD_WEBHOOK_URL}}\"|g' config.yml
           

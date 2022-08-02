@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: config.yml
-          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.1
+          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
       
       - run: cat config.yml
 
