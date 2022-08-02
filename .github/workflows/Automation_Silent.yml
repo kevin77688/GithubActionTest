@@ -10,6 +10,7 @@ jobs:
   setup_config:
     uses: kevin77688/GithubActionTest/.github/workflows/Config_Setup_Template.yml@main
     with:
+      notify: false
       fastReport: true
     secrets: inherit
 
@@ -23,8 +24,20 @@ jobs:
         uses: actions/cache@v3
         with:
           path: config.yml
-          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_a_1
-      - run: cat config.yml
+          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
+      - name: Setup Node.js
+        ses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bahamut Automation
+        run: npx bahamut-automation -c config.yml
+
+      - name: Keep Alive
+        uses: gautamkrishnar/keepalive-workflow@master
 
 # jobs:
 #   automation:

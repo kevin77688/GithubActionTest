@@ -32,7 +32,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: config.yml
-          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_a_1
+          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
 
       - name: Setup config files
         if: steps.config-cache.outputs.cache-hit != 'true'
