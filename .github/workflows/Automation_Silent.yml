@@ -8,11 +8,13 @@ on:
 
 jobs:
   setup_config:
-    uses: kevin77688/GithubActionTest/.github/workflows/Config_Setup_Template.yml@main
-    with:
-      notify: false
-      fastReport: false
-    secrets: inherit
+    container:
+      image: mcr.microsoft.com/playwright:v1.24.0-focal
+      uses: kevin77688/GithubActionTest/.github/workflows/Config_Setup_Template.yml@main
+      with:
+        notify: false
+        fastReport: false
+      secrets: inherit
 
   automation:
     needs: setup_config
