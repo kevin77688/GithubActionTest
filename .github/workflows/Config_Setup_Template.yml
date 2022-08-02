@@ -21,8 +21,6 @@ on:
       DISCORD_WEBHOOK_URL:
        required: true
 
-
-
 jobs:
   setup:
     runs-on: ubuntu-latest
@@ -39,10 +37,10 @@ jobs:
       - name: Setup config files
         if: steps.config-cache.outputs.cache-hit != 'true'
         run: |
-          sed -i "s|$username|\"${{secrets.USERNAME}}\"|g" config.yml
-          sed -i "s|$password|\"${{secrets.PASSWORD}}\"|g" config.yml
-          sed -i "s|$line_token|\"${{secrets.LINE_TOKEN}}\"|g" config.yml
-          sed -i "s|$discord_webhook_url|\"${{secrets.DISCORD_WEBHOOK_URL}}\"|g" config.yml
+          sed -i 's|$username|\"${{secrets.USERNAME}}\"|g' config.yml
+          sed -i 's|$password|\"${{secrets.PASSWORD}}\"|g' config.yml
+          sed -i 's|$line_token|\"${{secrets.LINE_TOKEN}}\"|g' config.yml
+          sed -i 's|$discord_webhook_url|\"${{secrets.DISCORD_WEBHOOK_URL}}\"|g' config.yml
           
           if [ $notify != true ]; then
             sed -i 's/line_notify/# line_notify/g' config.yml
