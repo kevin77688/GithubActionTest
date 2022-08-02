@@ -45,6 +45,9 @@ jobs:
           if [ "$notify" != "true" ]; then
             sed -i 's/line_notify/# line_notify/g' config.yml
             sed -i 's/token/# token/g' config.yml
+          else
+            sed -i 's/# line_notify/line_notify/g' config.yml
+            sed -i 's/# token/token/g' config.yml
           fi
 
           if [ "$fastReport" == "true" ]; then
@@ -54,6 +57,13 @@ jobs:
             sed -i 's/max_attempts/# max_attempts/g' config.yml
             sed -i 's/del_mail/# del_mail/g' config.yml
             sed -i 's/match/# match/g' config.yml
+          else
+            sed -i 's/# guild/guild/g' config.yml
+            sed -i 's/# answer/answer/g' config.yml
+            sed -i 's/# lottery/lottery/g' config.yml
+            sed -i 's/# max_attempts/max_attempts/g' config.yml
+            sed -i 's/# del_mail/del_mail/g' config.yml
+            sed -i 's/# match/match/g' config.yml
           fi
   # setup-container:
   #   runs-on: ubuntu-latest
