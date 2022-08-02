@@ -14,30 +14,50 @@ jobs:
       fastReport: false
     secrets: inherit
 
-  automation:
-    needs: setup_config
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Cache config files
-        id: config-cache
-        uses: actions/cache@v3
-        with:
-          path: config.yml
-          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
+    automation:
+      needs: setup_config
+      runs-on: ubuntu-latest
+      containers:
+        image: mcr.microsoft.com/playwright:v1.24.0-focal
+      steps:
+        - name: Cache config files
+          uses: actions/cache@v3
+          with:
+            path: config.yml
+            key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+        - run: | 
+            sudo apt-get update > /dev/null
+            sudo apt-get -y install build-essential > /dev/null
+            npm install
+            npx playwright install
+            npx bahamut-automation -c config.yml
 
-      - name: Setup playwright
-        uses: microsoft/playwright-github-action@v1
 
-      - name: Install dependencies
-        run: npm install
+  # automation:
+  #   needs: setup_config
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Cache config files
+  #       id: config-cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: config.yml
+  #         key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
 
-      - name: Bahamut Automation
-        run: |
-          npx playwright install chrome
-          npx bahamut-automation -c config.yml
-      - name: Keep Alive
-        uses: gautamkrishnar/keepalive-workflow@master
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v2
+
+  #     - name: Setup playwright
+  #       uses: microsoft/playwright-github-action@v1
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Bahamut Automation
+  #       run: |
+  #         npx playwright install chrome
+  #         npx bahamut-automation -c config.yml
+  #     - name: Keep Alive
+  #       uses: gautamkrishnar/keepalive-workflow@master
