@@ -15,9 +15,15 @@ jobs:
     secrets: inherit
 
   automation:
+    needs: setup_config
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - name: Cache config files
+        uses: actions/cache@v3
+        with:
+          path: config.yml
+          key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
     - uses: docker-practice/actions-setup-docker@master
     - run: |
         docker version
