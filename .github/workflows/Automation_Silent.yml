@@ -1,7 +1,7 @@
 name: Automation Silent
 
 on:
-  # push:
+  push:
   schedule:
     - cron: "0 17 * * *"  # UTC+8 01:00  UTC+0 17:00
   workflow_dispatch:
@@ -16,48 +16,51 @@ jobs:
 
   automation:
     needs: setup_config
-    runs-on: ubuntu-20.04
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - name: Cache config files
+        id: config-cache
         uses: actions/cache@v3
         with:
           path: config.yml
           key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
 
-      - run: | 
-          apt-get update > /dev/null
-          apt-get -y install build-essential firefox > /dev/null
-          apt-get -y upgrade
-          npm install
-          npx playwright install firefox
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+
+      - name: Setup playwright
+        uses: microsoft/playwright-github-action@v1
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bahamut Automation
+        run: |
+          npx playwright install
           npx bahamut-automation -c config.yml
+      - name: Keep Alive
+        uses: gautamkrishnar/keepalive-workflow@master
 
 
   # automation:
   #   needs: setup_config
-  #   runs-on: ubuntu-latest
+  #   runs-on: ubuntu-20.04
   #   steps:
   #     - uses: actions/checkout@v3
   #     - name: Cache config files
-  #       id: config-cache
   #       uses: actions/cache@v3
   #       with:
   #         path: config.yml
   #         key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
 
-  #     - name: Setup Node.js
-  #       uses: actions/setup-node@v2
-
-  #     - name: Setup playwright
-  #       uses: microsoft/playwright-github-action@v1
-
-  #     - name: Install dependencies
-  #       run: npm install
-
-  #     - name: Bahamut Automation
-  #       run: |
-  #         npx playwright install chrome
+  #     - run: | 
+  #         apt-get update > /dev/null
+  #         apt-get -y install build-essential firefox > /dev/null
+  #         apt-get -y upgrade
+  #         npm install
+  #         npx playwright install firefox
   #         npx bahamut-automation -c config.yml
-  #     - name: Keep Alive
-  #       uses: gautamkrishnar/keepalive-workflow@master
+
+
+  

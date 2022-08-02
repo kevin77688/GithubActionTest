@@ -1,7 +1,7 @@
 name: Automation Docker
 
 on:
-  push:
+  # push:
   schedule:
     - cron: "0 9 * * *" # UTC+8 17:00  UTC+0 09:00
   workflow_dispatch:
