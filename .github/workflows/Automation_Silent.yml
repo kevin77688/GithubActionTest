@@ -28,10 +28,10 @@ jobs:
 
       - run: | 
           apt-get update > /dev/null
-          apt install -y firefox
           apt-get -y install build-essential > /dev/null
+          apt-get -y upgrade
           npm install
-          npx playwright install
+          npx playwright install firefox
           npx bahamut-automation -c config.yml
 
 
