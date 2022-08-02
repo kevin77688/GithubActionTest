@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./.github/workflows/Config_Setup_Template
+      - uses: ./.github/workflows/Config_Setup_Template.yml
         with:
           fastReport: true
       - name: Cache config files
