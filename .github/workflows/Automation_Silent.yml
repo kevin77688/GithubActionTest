@@ -29,7 +29,6 @@ jobs:
       - run: | 
           apt-get update > /dev/null
           apt install -y firefox
-          firefox --version
           apt-get -y install build-essential > /dev/null
           npm install
           npx playwright install
