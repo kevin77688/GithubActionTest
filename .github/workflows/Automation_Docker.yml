@@ -7,29 +7,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  setup_config:
+    uses: kevin77688/GithubActionTest/.github/workflows/Config_Setup_Template.yml@main
+    with:
+      notify: false
+      fastReport: false
+    secrets: inherit
+
   automation:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v2
-    - name: Setup Config.yml 
-      uses: jannekem/run-python-script-action@v1
-      env:
-        USERNAME: ${{secrets.USERNAME}}
-        PASSWORD: ${{secrets.PASSWORD}}
-        LINE_TOKEN: ""
-      with:
-        script: |
-          import os
-          with open('config.yml', 'r') as file:
-            data = file.read()
-          data = data.replace("$username", os.environ['USERNAME'])
-          data = data.replace("$password", os.environ['PASSWORD'])
-          data = data.replace("$line_token", os.environ['LINE_TOKEN'])
-          with open('config.yml', 'w') as file:
-            file.write(data)
-
     - uses: docker-practice/actions-setup-docker@master
     - run: |
         docker version

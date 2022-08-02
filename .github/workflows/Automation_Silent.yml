@@ -36,7 +36,9 @@ jobs:
         run: npm install
 
       - name: Bahamut Automation
-        run: npx bahamut-automation -c config.yml
+        run: |
+          npx playwright install
+          npx bahamut-automation -c config.yml
 
       - name: Keep Alive
         uses: gautamkrishnar/keepalive-workflow@master
