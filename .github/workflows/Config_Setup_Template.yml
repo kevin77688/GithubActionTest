@@ -52,6 +52,8 @@ jobs:
             sed -i 's/answer/# answer/g' config.yml
             sed -i 's/lottery/# lottery/g' config.yml
             sed -i 's/max_attempts/# max_attempts/g' config.yml
+            sed -i 's/del_mail/# del_mail/g' config.yml
+            sed -i 's/match/# match/g' config.yml
           fi
 
 
