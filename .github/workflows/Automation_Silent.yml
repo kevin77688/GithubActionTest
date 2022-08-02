@@ -32,11 +32,9 @@ jobs:
         run: |
           apt-get update > /dev/null
           apt-get -y install build-essential > /dev/null
+          apt install google-chrome-stable  > /dev/null
           npm install
           npx playwright install
 
       - name: Bahamut Automation
         run: npx bahamut-automation -c config.yml
-
-      - name: Keep Alive
-        uses: gautamkrishnar/keepalive-workflow@master
