@@ -1,45 +1,61 @@
 name: Automation Silent
 
 on:
-  # push:
+  push:
   schedule:
     - cron: "0 17 * * *"  # UTC+8 01:00  UTC+0 17:00
   workflow_dispatch:
 
 jobs:
   automation:
-    runs-on: macos-latest
-
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v2
-    - name: Setup Config.yml 
-      uses: jannekem/run-python-script-action@v1
-      env:
-        USERNAME: ${{secrets.USERNAME}}
-        PASSWORD: ${{secrets.PASSWORD}}
-        LINE_TOKEN: ""
-      with:
-        script: |
-          import os
-          with open('config.yml', 'r') as file:
-            data = file.read()
-          data = data.replace("$username", os.environ['USERNAME'])
-          data = data.replace("$password", os.environ['PASSWORD'])
-          data = data.replace("$line_token", os.environ['LINE_TOKEN'])
-          with open('config.yml', 'w') as file:
-            file.write(data)
+      - uses: actions/checkout@v3
+      - uses: ./.github/workflows/Config_Setup_Template
+        with:
+          fastReport: true
+      - name: Cache config files
+        id: config-cache
+        uses: actions/cache@v3
+        with:
+          path: ~/config.yml
+          key: ${{ hashFiles('**/config.yml') }}-ver_a_1
+      - run: cat config.yml
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16
+# jobs:
+#   automation:
+#     runs-on: macos-latest
 
-    - name: Install dependencies
-      run: npm install
+#     steps:
+#     - uses: actions/checkout@v3
+#     - uses: actions/setup-python@v2
+#     - name: Setup Config.yml 
+#       uses: jannekem/run-python-script-action@v1
+#       env:
+#         USERNAME: ${{secrets.USERNAME}}
+#         PASSWORD: ${{secrets.PASSWORD}}
+#         LINE_TOKEN: ""
+#       with:
+#         script: |
+#           import os
+#           with open('config.yml', 'r') as file:
+#             data = file.read()
+#           data = data.replace("$username", os.environ['USERNAME'])
+#           data = data.replace("$password", os.environ['PASSWORD'])
+#           data = data.replace("$line_token", os.environ['LINE_TOKEN'])
+#           with open('config.yml', 'w') as file:
+#             file.write(data)
 
-    - name: Bahamut Automation
-      run: npx bahamut-automation -c config.yml
+#     - name: Setup Node.js
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: 16
+
+#     - name: Install dependencies
+#       run: npm install
+
+#     - name: Bahamut Automation
+#       run: npx bahamut-automation -c config.yml
           
-    - name: Keep Alive
-      uses: gautamkrishnar/keepalive-workflow@master
+#     - name: Keep Alive
+#       uses: gautamkrishnar/keepalive-workflow@master

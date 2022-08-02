@@ -27,8 +27,8 @@ modules:
     # 以下是寄報告的部分
     # telegram:
     #     channel: $telegram_channel_id
-    # discord:
-    #     webhook: $discord_webhook_url
+    discord:
+        webhook: $discord_webhook_url
     line_notify:
         token: $line_token
     issue:
