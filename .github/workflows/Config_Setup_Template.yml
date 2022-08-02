@@ -6,9 +6,11 @@ on:
       notify:
         required: false
         default: false
+        type: boolean
       fastReport:
         required: false
         default: false
+        type: boolean
 
 
 jobs:
