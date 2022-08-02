@@ -25,6 +25,8 @@ jobs:
         with:
           path: config.yml
           key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
+      
+      - run: cat config.yml
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
