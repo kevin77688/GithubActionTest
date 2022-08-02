@@ -15,7 +15,7 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install tree
           tree ./
-      - uses: ./.github/workflows/Config_Setup_Template.yml
+      - uses: ./.github/actions/Config_Setup_Template
         with:
           fastReport: true
       - name: Cache config files
