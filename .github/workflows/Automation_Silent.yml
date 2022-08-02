@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: |
+          apt-get update
+          apt-get -y install tree
+          tree ./
       - uses: ./.github/workflows/Config_Setup_Template.yml
         with:
           fastReport: true
