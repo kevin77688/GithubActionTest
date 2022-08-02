@@ -27,12 +27,13 @@ jobs:
         with:
           path: config.yml
           key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
+          
+      - uses: browser-actions/setup-chrome@latest
 
       - name: Install dependencies
         run: |
           apt-get update > /dev/null
           apt-get -y install build-essential > /dev/null
-          apt install google-chrome-stable  > /dev/null
           npm install
           npx playwright install
 
