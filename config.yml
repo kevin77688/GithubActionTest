@@ -16,12 +16,12 @@ modules:
         username: $username
         password: $password
     sign:
-    guild:
-    answer:
-    lottery:
-        max_attempts: 20
-    del_mail:
-        match: [{ title: "【勇者福利社】成功獲得抽獎資格通知信" }, { title: "動畫瘋獲獎通知" }]
+    # guild:
+    # answer:
+    # lottery:
+    #     max_attempts: 20
+    # del_mail:
+    #     match: [{ title: "【勇者福利社】成功獲得抽獎資格通知信" }, { title: "動畫瘋獲獎通知" }]
 
     logout:
 
@@ -41,7 +41,7 @@ modules:
 
 # 瀏覽器的設定
 browser:
-    type: chromium
+    type: firefox
     headless: true
     firefoxUserPrefs:
         dom.webaudio.enabled: true
