@@ -24,10 +24,10 @@ jobs:
         with:
           path: config.yml
           key: ${{ hashFiles('**/Config_Setup_Template.yml') }}-ver_1.0
-    - uses: docker-practice/actions-setup-docker@master
-    - run: |
-        docker version
-        docker run --rm -v "$(pwd)/config.yml:/config.yml" jacoblincool/bahamut-automation:v1.0.0-pre.7
+      - uses: docker-practice/actions-setup-docker@master
+      - run: |
+          docker version
+          docker run --rm -v "$(pwd)/config.yml:/config.yml" jacoblincool/bahamut-automation:v1.0.0-pre.7
 
-    - name: Keep Alive
-      uses: gautamkrishnar/keepalive-workflow@master
+      - name: Keep Alive
+        uses: gautamkrishnar/keepalive-workflow@master
