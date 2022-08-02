@@ -42,12 +42,12 @@ jobs:
           sed -i 's|$line_token|\"${{secrets.LINE_TOKEN}}\"|g' config.yml
           sed -i 's|$discord_webhook_url|\"${{secrets.DISCORD_WEBHOOK_URL}}\"|g' config.yml
           
-          if [ $notify != true ]; then
+          if [ "$notify" != "true" ]; then
             sed -i 's/line_notify/# line_notify/g' config.yml
             sed -i 's/token/# token/g' config.yml
           fi
 
-          if [ $fastReport == true ]; then
+          if [ "$fastReport" == "true" ]; then
             sed -i 's/guild/# guild/g' config.yml
             sed -i 's/answer/# answer/g' config.yml
             sed -i 's/lottery/# lottery/g' config.yml

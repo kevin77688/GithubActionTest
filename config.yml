@@ -31,7 +31,7 @@ modules:
         webhook: $discord_webhook_url
     line_notify:
         token: $line_token
-    issue:
+    # issue:
 
     # 自製模組（範例）
     # /path/to/module:
