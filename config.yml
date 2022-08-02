@@ -9,6 +9,7 @@ modules:
     # 註冊一些通用函式到 shared
     utils:
     report:
+        only_failed: true
     ad_handler:
 
     # 主要功能模組
