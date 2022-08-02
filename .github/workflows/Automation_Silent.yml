@@ -17,7 +17,6 @@ jobs:
   automation:
     needs: setup_config
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.24.0-focal
     steps:
       - uses: actions/checkout@v3
       - name: Cache config files
@@ -28,7 +27,7 @@ jobs:
 
       - run: | 
           apt-get update > /dev/null
-          apt-get -y install build-essential > /dev/null
+          apt-get -y install build-essential firefox > /dev/null
           apt-get -y upgrade
           npm install
           npx playwright install firefox
