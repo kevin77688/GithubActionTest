@@ -11,7 +11,7 @@ jobs:
     uses: kevin77688/GithubActionTest/.github/workflows/Config_Setup_Template.yml@main
     with:
       fastReport: true
-
+    secrets: inherit
 
   automation:
     needs: setup_config

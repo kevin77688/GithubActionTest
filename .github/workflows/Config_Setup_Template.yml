@@ -11,6 +11,16 @@ on:
         required: false
         default: false
         type: boolean
+    secrets:
+      USERNAME:
+       required: true
+      PASSWORD:
+       required: true
+      LINE_TOKEN:
+       required: true
+      DISCORD_WEBHOOK_URL:
+       required: true
+
 
 
 jobs:
