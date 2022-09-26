@@ -11,6 +11,10 @@ on:
         required: false
         default: false
         type: boolean
+      debug:
+        required: false
+        default: true
+        type: boolean
     secrets:
       USERNAME:
        required: true
@@ -64,4 +68,14 @@ jobs:
             sed -i 's/# max_attempts/max_attempts/g' config.yml
             sed -i 's/# del_mail/del_mail/g' config.yml
             sed -i 's/# match/match/g' config.yml
+          fi
+
+          if [ "$debug" == "true" ]; then
+            sed -i 's/answer/# answer/g' config.yml
+            sed -i 's/lottery/# lottery/g' config.yml
+            sed -i 's/max_attempts/# max_attempts/g' config.yml
+          else
+            sed -i 's/# answer/answer/g' config.yml
+            sed -i 's/# lottery/lottery/g' config.yml
+            sed -i 's/# max_attempts/max_attempts/g' config.yml
           fi
