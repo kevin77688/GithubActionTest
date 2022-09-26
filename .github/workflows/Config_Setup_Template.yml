@@ -11,10 +11,6 @@ on:
         required: false
         default: false
         type: boolean
-      debug:
-        required: false
-        default: true
-        type: boolean
     secrets:
       USERNAME:
        required: true
@@ -56,26 +52,52 @@ jobs:
 
           if [ "$fastReport" == "true" ]; then
             sed -i 's/guild/# guild/g' config.yml
-            sed -i 's/answer/# answer/g' config.yml
-            sed -i 's/lottery/# lottery/g' config.yml
-            sed -i 's/max_attempts/# max_attempts/g' config.yml
             sed -i 's/del_mail/# del_mail/g' config.yml
             sed -i 's/match/# match/g' config.yml
           else
             sed -i 's/# guild/guild/g' config.yml
-            sed -i 's/# answer/answer/g' config.yml
-            sed -i 's/# lottery/lottery/g' config.yml
-            sed -i 's/# max_attempts/max_attempts/g' config.yml
             sed -i 's/# del_mail/del_mail/g' config.yml
             sed -i 's/# match/match/g' config.yml
           fi
 
-          if [ "$debug" == "true" ]; then
-            sed -i 's/answer/# answer/g' config.yml
-            sed -i 's/lottery/# lottery/g' config.yml
-            sed -i 's/max_attempts/# max_attempts/g' config.yml
-          else
-            sed -i 's/# answer/answer/g' config.yml
-            sed -i 's/# lottery/lottery/g' config.yml
-            sed -i 's/# max_attempts/max_attempts/g' config.yml
-          fi
+      # - name: Setup config files
+      #   if: steps.config-cache.outputs.cache-hit != 'true'
+      #   run: |
+      #     sed -i 's|$username|${{secrets.USERNAME}}|g' config.yml
+      #     sed -i 's|$password|${{secrets.PASSWORD}}|g' config.yml
+      #     sed -i 's|$line_token|${{secrets.LINE_TOKEN}}|g' config.yml
+      #     sed -i 's|$discord_webhook_url|${{secrets.DISCORD_WEBHOOK_URL}}|g' config.yml
+          
+      #     if [ "$notify" != "true" ]; then
+      #       sed -i 's/line_notify/# line_notify/g' config.yml
+      #       sed -i 's/token/# token/g' config.yml
+      #     else
+      #       sed -i 's/# line_notify/line_notify/g' config.yml
+      #       sed -i 's/# token/token/g' config.yml
+      #     fi
+
+      #     if [ "$fastReport" == "true" ]; then
+      #       sed -i 's/guild/# guild/g' config.yml
+      #       sed -i 's/answer/# answer/g' config.yml
+      #       sed -i 's/lottery/# lottery/g' config.yml
+      #       sed -i 's/max_attempts/# max_attempts/g' config.yml
+      #       sed -i 's/del_mail/# del_mail/g' config.yml
+      #       sed -i 's/match/# match/g' config.yml
+      #     else
+      #       sed -i 's/# guild/guild/g' config.yml
+      #       sed -i 's/# answer/answer/g' config.yml
+      #       sed -i 's/# lottery/lottery/g' config.yml
+      #       sed -i 's/# max_attempts/max_attempts/g' config.yml
+      #       sed -i 's/# del_mail/del_mail/g' config.yml
+      #       sed -i 's/# match/match/g' config.yml
+      #     fi
+
+      #     if [ "$debug" == "true" ]; then
+      #       sed -i 's/answer/# answer/g' config.yml
+      #       sed -i 's/lottery/# lottery/g' config.yml
+      #       sed -i 's/max_attempts/# max_attempts/g' config.yml
+      #     else
+      #       sed -i 's/# answer/answer/g' config.yml
+      #       sed -i 's/# lottery/lottery/g' config.yml
+      #       sed -i 's/# max_attempts/max_attempts/g' config.yml
+      #     fi
