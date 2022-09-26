@@ -18,11 +18,11 @@ modules:
         password: $password
     sign:
     guild:
-    answer:
-    lottery:
-        max_attempts: 20
-    del_mail:
-        match: [{ title: "【勇者福利社】成功獲得抽獎資格通知信" }, { title: "動畫瘋獲獎通知" }]
+    # answer:
+    # lottery:
+    #     max_attempts: 20
+    # del_mail:
+    #     match: [{ title: "【勇者福利社】成功獲得抽獎資格通知信" }, { title: "動畫瘋獲獎通知" }]
 
     logout:
 
