@@ -8,8 +8,8 @@ shared:
 modules:
     # 註冊一些通用函式到 shared
     utils:
-    report:
-        only_failed: true
+    # report:
+    #     only_failed: true
     ad_handler:
 
     # 主要功能模組
@@ -29,10 +29,10 @@ modules:
     # 以下是寄報告的部分
     # telegram:
     #     channel: $telegram_channel_id
-    discord:
-        webhook: $discord_webhook_url
-    line_notify:
-        token: $line_token
+    # discord:
+    #     webhook: $discord_webhook_url
+    # line_notify:
+    #     token: $line_token
     # issue:
 
     # 自製模組（範例）
